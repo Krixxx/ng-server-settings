@@ -3,7 +3,7 @@
 # Define variables
 TIMESTAMP=$(date +%Y%m%d_%H%M%S)
 BACKUP_DIR=~/backups
-VOLUME_NAME=postgres_data
+VOLUME_NAME=ng-server-settings_postgres_data
 
 # Create backup directory if it doesn't exist
 mkdir -p $BACKUP_DIR
