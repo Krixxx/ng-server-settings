@@ -22,16 +22,17 @@ echo "Docker set up"
 # configure your Raspberry Pi to automatically run the Docker system service, whenever it boots up
 sudo systemctl enable docker
 
+
+# set up automatic backup cronjob
 echo "Set up cron job"
 
-# Define variables
+  # Define variables
 CRONJOB="0 0/12 * * * sh ~/Projects/ng-server-settings/backup.sh"
-CRONTAB_FILE="/etc/crontab"
 
-# Check if cron job already exists
-if ! grep -qF "$CRONJOB" "$CRONTAB_FILE"; then
+  # Check if cron job already exists
+if ! crontab -l | grep -qF "$CRONJOB"; then
     # Add cron job to crontab
-    echo "$CRONJOB" >> "$CRONTAB_FILE"
+    (crontab -l 2>/dev/null; echo "$CRONJOB") | crontab -
     echo "Cron job added to crontab."
 else
     echo "Cron job already exists in crontab."
