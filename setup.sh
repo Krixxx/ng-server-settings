@@ -23,7 +23,7 @@ echo "Docker set up"
 sudo systemctl enable docker
 
 
-# set up automatic backup cronjob
+# set up automatic backup cronjob to run every 12 hours
 echo "Set up cron job"
 
   # Define variables
@@ -44,6 +44,11 @@ fi
 # export POSTGRES_PASSWORD=
 # export POSTGRES_DB=
 # we can edit the file with command nano ~/.profile
+
+# after adding env variables, we should restart docker service
+# sudo systemctl restart docker
+# and raspberry
+# sudo reboot
 
 echo "Run services"
 
