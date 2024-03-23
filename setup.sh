@@ -1,5 +1,7 @@
 echo "Setting up the environment"
 
+echo "Set up Docker"
+
 apt update
 sudo apt-get update
 sudo apt-get upgrade
@@ -20,3 +22,31 @@ echo "Docker set up"
 # configure your Raspberry Pi to automatically run the Docker system service, whenever it boots up
 sudo systemctl enable docker
 
+echo "Set up cron job"
+
+# Define variables
+CRONJOB="0 0/12 * * * sh ~/Projects/ng-server-settings/backup.sh"
+CRONTAB_FILE="/etc/crontab"
+
+# Check if cron job already exists
+if ! grep -qF "$CRONJOB" "$CRONTAB_FILE"; then
+    # Add cron job to crontab
+    echo "$CRONJOB" >> "$CRONTAB_FILE"
+    echo "Cron job added to crontab."
+else
+    echo "Cron job already exists in crontab."
+fi
+
+# In order to start running services, we need to set up environment variables.
+# We need to add these lines to the end of .profile file
+# export POSTGRES_USER=
+# export POSTGRES_PASSWORD=
+# export POSTGRES_DB=
+# we can edit the file with command nano ~/.profile
+
+echo "Run services"
+
+# start the Docker service
+docker compose up -d
+
+echo "Services running"
