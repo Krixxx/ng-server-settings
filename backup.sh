@@ -4,7 +4,7 @@
 TIMESTAMP=$(date +%Y%m%d_%H%M%S)
 BACKUP_DIR=~/backups
 VOLUME_NAME=ng-server-settings_postgres_data
-MAX_DAYS=30
+MAX_DAYS=1
 
 # Create backup directory if it doesn't exist
 mkdir -p $BACKUP_DIR
