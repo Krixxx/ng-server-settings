@@ -1,4 +1,3 @@
-version: '3'
 include:
   # - ./compose/postgres/postgres.yml
   - ./compose/mongo/mongo.yml
